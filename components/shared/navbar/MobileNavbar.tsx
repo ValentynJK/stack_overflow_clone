@@ -10,46 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { SignedOut } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { sidebarLinks } from "@/constants";
-import { usePathname } from "next/navigation";
-
-const NavContent = () => {
-  const pathname = usePathname();
-  return (
-    <section className='text-dark400_light900 flex h-full flex-col gap-6 py-16'>
-      {sidebarLinks.map((item, index) => {
-        const isActive =
-          (pathname.includes(item.route) && item.route.length > 1) ||
-          pathname === item.route;
-
-        return (
-          <SheetClose asChild key={item.route}>
-            <Link
-              className={`${
-                isActive
-                  ? "primary-gradient rounded-lg text-light-900"
-                  : "text-dark300_light900"
-              } flex items-center justify-start gap-4 bg-transparent p-4`}
-              key={index}
-              href={item.route}
-            >
-              <Image
-                src={item.imgURL}
-                width={20}
-                height={20}
-                alt={item.label}
-                className={`${isActive ? "" : "invert-colors"}`}
-              />
-              <p className={`${isActive ? "base-bold" : "base-medium"}`}>
-                {item.label}
-              </p>
-            </Link>
-          </SheetClose>
-        );
-      })}
-    </section>
-  );
-};
+import NavContent from "./NavContent";
 
 const MobileNavbar = () => {
   return (
