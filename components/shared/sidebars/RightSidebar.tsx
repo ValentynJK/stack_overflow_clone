@@ -3,11 +3,11 @@ import Link from "next/link";
 import RenderTag from "../RenderTag";
 
 const tags = [
-  { _id: 1, name: "JavaScript", totalQuestions: 5 },
-  { _id: 2, name: "NextJS", totalQuestions: 11 },
-  { _id: 3, name: "Python", totalQuestions: 10 },
-  { _id: 4, name: "C++", totalQuestions: 7 },
-  { _id: 5, name: "React", totalQuestions: 6 },
+  { _id: "1", name: "JavaScript", totalQuestions: 5 },
+  { _id: "2", name: "NextJS", totalQuestions: 11 },
+  { _id: "3", name: "Python", totalQuestions: 10 },
+  { _id: "4", name: "C++", totalQuestions: 7 },
+  { _id: "5", name: "React", totalQuestions: 6 },
 ];
 
 const RightSidebar = () => {
