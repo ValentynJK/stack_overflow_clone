@@ -1,6 +1,8 @@
 import Filter from "@/components/shared/Filter";
 import HomeFilters from "@/components/home/HomeFilters";
 import LocalSearch from "@/components/shared/search/LocalSearch";
+import QuestionCard from "@/components/home/QuestionCard";
+
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import Link from "next/link";
@@ -36,6 +38,13 @@ export default function Home() {
         />
       </div>
       <HomeFilters />
+      <section className="mt-10 flex flex-col gap-6 dark:text-light-900">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <div key={index}>
+            <QuestionCard />
+          </div>
+        ))}
+      </section>
     </>
   );
 }
