@@ -25,14 +25,23 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestion } from "@/lib/actions/question.action";
+import { useRouter } from "next/navigation";
+
+interface Props {
+  mongoUserId: string;
+}
 
 const type = "edit";
 
-const Question = () => {
+const Question = ({ mongoUserId }: Props) => {
   // establishes Tiny reference
   const editorRef = useRef(null);
 
+  // needed to control response time when the question is submitting
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // defining routing params for redirects
+  const router = useRouter();
+  // const pathname = usePathname();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionsSchema>>({
@@ -48,10 +57,16 @@ const Question = () => {
   async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
     setIsSubmitting(true);
     try {
-      await createQuestion();
-      // async call to DB API -> create/edit a record
-      // contain all form data
-      // navigate to homepage
+      // sends create request
+      await createQuestion({
+        title: values.title,
+        content: values.explanation,
+        tags: values.tags,
+        author: JSON.parse(mongoUserId),
+      });
+
+      // navigates to homepage
+      router.push("/");
     } catch (error) {}
   }
 
