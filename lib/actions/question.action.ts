@@ -59,7 +59,7 @@ export async function createQuestion(params: CreateQuestionParams) {
       $push: { tags: { $each: tagDocuments } },
     });
 
-    // TODO: Explore a bit about this method
+    // re-validated cached data after new question is submitted to display in on "path"
     revalidatePath(path);
   } catch (error) {
     console.log(error);

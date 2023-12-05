@@ -115,7 +115,6 @@ export default async function Home() {
               createdAt,
             } = question;
             return (
-              // TODO: refactor question to only params which are required
               <QuestionCard
                 key={_id}
                 _id={_id}

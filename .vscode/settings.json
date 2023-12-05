@@ -8,5 +8,5 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["darkgradient", "upvotes", "Valentyn"]
+  "cSpell.words": ["darkgradient", "svix", "upvotes", "Valentyn"]
 }

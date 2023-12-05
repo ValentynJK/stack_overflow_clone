@@ -3,7 +3,6 @@ import RenderTag from "../shared/RenderTag";
 import Metric from "../shared/Metric";
 import { formatLargeNumber, getTimestamp } from "@/lib/utils";
 
-// TODO: delete interface after component refactoring
 interface QuestionProps {
   _id: string;
   title: string;
@@ -19,7 +18,6 @@ interface QuestionProps {
   createdAt: Date;
 }
 
-// TODO: refactor component to take only needed params, but not the whole object
 const QuestionCard = (params: QuestionProps) => {
   const { _id, title, tags, author, upvoted, views, answers, createdAt } =
     params;
