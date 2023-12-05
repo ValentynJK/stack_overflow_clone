@@ -3,28 +3,28 @@ import RenderTag from "../shared/RenderTag";
 import Metric from "../shared/Metric";
 import { formatLargeNumber, getTimestamp } from "@/lib/utils";
 
+// TODO: delete interface after component refactoring
 interface QuestionProps {
-  question: {
-    _id: number;
-    title: string;
-    tags: { _id: string; name: string }[];
-    author: {
-      _id: string;
-      name: string;
-      picture: string;
-    };
-    upvotes: number;
-    views: number;
-    answers: Array<object>;
-    createdAt: Date;
+  _id: string;
+  title: string;
+  tags: { _id: string; name: string }[];
+  author: {
+    _id: string;
+    name: string;
+    picture: string;
   };
+  upvoted: number;
+  views: number;
+  answers: Array<object>;
+  createdAt: Date;
 }
 
-const QuestionCard = ({ question }: QuestionProps) => {
-  const { _id, title, tags, author, upvotes, views, answers, createdAt } =
-    question;
+// TODO: refactor component to take only needed params, but not the whole object
+const QuestionCard = (params: QuestionProps) => {
+  const { _id, title, tags, author, upvoted, views, answers, createdAt } =
+    params;
 
-  const formattedUpvotes = formatLargeNumber(upvotes);
+  const formattedUpvotes = formatLargeNumber(upvoted);
   const formattedViews = formatLargeNumber(views);
   const formattedAnswers = formatLargeNumber(answers.length);
 
