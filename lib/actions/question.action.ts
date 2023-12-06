@@ -2,19 +2,35 @@
 
 import Question from "@/database/question.model";
 import Tag from "@/database/tad.model";
+import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose";
+import { GetQuestionsParams, CreateQuestionParams } from "./shared.type";
+import { revalidatePath } from "next/cache";
 
-export async function createQuestion(params: any) {
+export async function getQuestions(params: GetQuestionsParams) {
   try {
     await connectToDatabase();
 
-    const {
-      title,
-      content,
-      tags,
-      author,
-      // path
-    } = params;
+    const questions = await Question.find({})
+      .populate({
+        path: "tags",
+        model: Tag,
+      })
+      .populate({ path: "author", model: User })
+      .sort({ createdAt: -1 });
+
+    return { questions };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function createQuestion(params: CreateQuestionParams) {
+  try {
+    await connectToDatabase();
+
+    const { title, content, tags, author, path } = params;
 
     // creates initial question with given params
     const question = await Question.create({
@@ -42,6 +58,9 @@ export async function createQuestion(params: any) {
     await Question.findOneAndUpdate(question._id, {
       $push: { tags: { $each: tagDocuments } },
     });
+
+    // re-validated cached data after new question is submitted to display in on "path"
+    revalidatePath(path);
   } catch (error) {
     console.log(error);
   }
