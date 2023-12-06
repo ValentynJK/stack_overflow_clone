@@ -55,7 +55,7 @@ const QuestionCard = (params: QuestionProps) => {
         <div className="body-medium text-dark400_light700 flex w-full flex-wrap items-center justify-between gap-3 max-sm:flex-wrap max-sm:justify-start">
           <div>
             <Metric
-              imgUrl="/assets/icons/avatar.svg"
+              imgUrl={author.picture}
               alt="User image"
               value={author.name}
               title={` asked ${timeStamp}`}
