@@ -59,13 +59,20 @@ export async function POST(req: Request) {
   console.log("Webhook body:", body);
 
   if (eventType === "user.created") {
-    const { id, email_addresses, username, image_url, first_name, last_name } =
-      evt.data;
+    const {
+      id,
+      email_addresses,
+      // username,
+      image_url,
+      first_name,
+      last_name,
+    } = evt.data;
 
     const mongoUser = await createUser({
       clerkId: id,
       name: `${first_name}${last_name ? ` ${last_name}` : ""}`,
-      username: username!,
+      // TODO: change this to actual username
+      username: "test",
       email: email_addresses[0].email_address,
       picture: image_url,
     });
@@ -73,14 +80,21 @@ export async function POST(req: Request) {
     console.log(mongoUser);
   }
   if (eventType === "user.updated") {
-    const { id, email_addresses, username, image_url, first_name, last_name } =
-      evt.data;
+    const {
+      id,
+      email_addresses,
+      // username,
+      image_url,
+      first_name,
+      last_name,
+    } = evt.data;
 
     const mongoUser = await updateUser({
       clerkId: id,
       updateData: {
         name: `${first_name}${last_name ? ` ${last_name}` : ""}`,
-        username: username!,
+        // TODO: change this to actual username
+        username: "test",
         email: email_addresses[0].email_address,
         picture: image_url,
       },
