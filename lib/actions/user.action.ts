@@ -5,7 +5,9 @@ import User from "@/database/user.model";
 import {
   CreateUserParams,
   DeleteUserParams,
+  GetAllUsersParams,
   UpdateUserParams,
+  // GetAllUsersParams,
 } from "./shared.type";
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
@@ -74,6 +76,42 @@ export async function deleteUser(userData: DeleteUserParams) {
     const deletedUser = await User.findByIdAndDelete(user._id);
 
     return deletedUser;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getAllUsers(params: GetAllUsersParams) {
+  try {
+    await connectToDatabase();
+    // const { page = 1, pageSize = 20, filter, searchQuery } = params;
+    const users = await User.find(
+      {},
+
+      {
+        // protection object, which is returned
+        clerkId: 1,
+        name: 1,
+        username: 1,
+        picture: 1,
+        questions: 1,
+        _id: 1,
+      }
+    ).sort({ createdAt: -1 });
+    // .populate({
+    //   path: "questions",
+    //   model: Question,
+    //   select: "tags -_id",
+    //   populate: {
+    //     path: "tags",
+    //     model: Tag,
+    //     select: "name _id",
+    //     options: { limit: 3 },
+    //   },
+    // });
+
+    return { users };
   } catch (error) {
     console.log(error);
     throw error;

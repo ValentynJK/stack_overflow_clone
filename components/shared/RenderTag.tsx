@@ -1,35 +1,23 @@
 import Link from "next/link";
-import { Badge } from "../ui/badge";
+import React from "react";
+import { Badge } from "@/components/ui/badge";
 
-interface RenderTagProps {
+interface Props {
   _id: string;
   name: string;
   totalQuestions?: number;
-  showCount: boolean;
+  showCount?: boolean;
 }
 
-const RenderTag = ({
-  _id,
-  name,
-  totalQuestions,
-  showCount,
-}: RenderTagProps) => {
+const RenderTag = ({ _id, name, totalQuestions, showCount }: Props) => {
   return (
-    <Link
-      key={_id}
-      href={`/tags/${_id}`}
-      className="flex items-center justify-between gap-3"
-    >
-      <Badge
-        variant="outline"
-        className="background-light800_dark300 text-light400_light500 subtle-medium rounded-md border border-none border-transparent bg-slate-900 px-4 py-2 text-xs font-semibold uppercase"
-      >
+    <Link href={`/tags/${_id}`} className="flex justify-between gap-2">
+      <Badge className="subtle-medium background-light800_dark300 text-light400_light500 rounded-md border-none px-4 py-2 uppercase">
         {name}
       </Badge>
+
       {showCount && (
-        <span className="small-medium text-dark500_light700">
-          {totalQuestions}
-        </span>
+        <p className="small-medium text-dark500_light700">{totalQuestions}</p>
       )}
     </Link>
   );

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run check-port && next dev",
+    "check-port": "echo 'Checking if port 3000 is in use' && lsof -i :3000 && echo 'Port 3000 is in use. Killing the process...' && lsof -ti :3000 | xargs kill -9 || echo 'Port 3000 is available'",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -26,7 +27,7 @@
     "lucide-react": "^0.279.0",
     "mongodb": "^6.2.0",
     "mongoose": "^8.0.0",
-    "next": "latest",
+    "next": "13.4.19",
     "prettier": "^3.0.3",
     "react": "latest",
     "react-dom": "latest",

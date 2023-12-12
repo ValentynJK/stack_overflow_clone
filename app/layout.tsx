@@ -27,6 +27,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "./favicon.ico",
   },
+  formatDetection: {
+    telephone: false,
+    date: false,
+    email: false,
+    address: false,
+  },
 };
 
 export default function RootLayout({
