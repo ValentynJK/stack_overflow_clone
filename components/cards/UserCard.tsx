@@ -21,7 +21,7 @@ const UserCard = async ({ user }: Props) => {
     <div className="background-light900_dark200 shadow-light100_darknone flex w-full flex-col items-center justify-center gap-3 rounded-2xl  text-center max-xs:min-w-full xs:w-[260px]">
       <Link
         href={`/profile/${user.clerkId}`}
-        className="mt-8 flex flex-col items-center px-6"
+        className="mt-8 flex w-full flex-col items-center px-6"
       >
         <Image
           src={user.picture}
