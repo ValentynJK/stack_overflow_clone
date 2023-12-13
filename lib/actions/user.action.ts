@@ -84,32 +84,11 @@ export async function deleteUser(userData: DeleteUserParams) {
 
 export async function getAllUsers(params: GetAllUsersParams) {
   try {
-    await connectToDatabase();
-    // const { page = 1, pageSize = 20, filter, searchQuery } = params;
-    const users = await User.find(
-      {},
+    connectToDatabase();
 
-      {
-        // protection object, which is returned
-        clerkId: 1,
-        name: 1,
-        username: 1,
-        picture: 1,
-        questions: 1,
-        _id: 1,
-      }
-    ).sort({ createdAt: -1 });
-    // .populate({
-    //   path: "questions",
-    //   model: Question,
-    //   select: "tags -_id",
-    //   populate: {
-    //     path: "tags",
-    //     model: Tag,
-    //     select: "name _id",
-    //     options: { limit: 3 },
-    //   },
-    // });
+    // const { page = 1, pageSize = 20, filter, searchQuery } = params;
+
+    const users = await User.find({}).sort({ createdAt: -1 });
 
     return { users };
   } catch (error) {
