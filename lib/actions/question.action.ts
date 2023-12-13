@@ -1,7 +1,7 @@
 "use server";
 
 import Question from "@/database/question.model";
-import Tag from "@/database/tad.model";
+import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose";
 import { GetQuestionsParams, CreateQuestionParams } from "./shared.type";
@@ -39,6 +39,10 @@ export async function createQuestion(params: CreateQuestionParams) {
       author,
     });
 
+    // updates user question array
+    await User.findByIdAndUpdate(author, {
+      $push: { questions: question._id },
+    });
     // initial array object for tags
     const tagDocuments = [];
 
