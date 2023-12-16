@@ -17,7 +17,7 @@ const Tags = async () => {
           route="/community"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
-          placeholder="Search for amazing minds"
+          placeholder="Search by tag name..."
           otherClasses="flex-1"
         />
 
