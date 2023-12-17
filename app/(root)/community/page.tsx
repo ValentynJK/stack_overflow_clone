@@ -1,10 +1,10 @@
 import UserCard from "@/components/cards/UserCard";
 import { getAllUsers } from "@/lib/actions/user.action";
-import Link from "next/link";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import { UserFilters } from "@/constants/filters";
 import Filter from "@/components/shared/Filter";
 import { Metadata } from "next";
+import NoResult from "@/components/shared/NoResult";
 
 export const metadata: Metadata = {
   title: "Community | Dev Overflow",
@@ -38,12 +38,12 @@ const Community = async () => {
         {users.length > 0 ? (
           users.map((user) => <UserCard key={user._id} user={user} />)
         ) : (
-          <div className="paragraph-regular text-dark200_light800 mx-auto max-w-xl text-center">
-            <p>No users yet</p>
-            <Link href="/sign-up" className="mt-2 font-bold text-accent-blue">
-              Join to be the first
-            </Link>
-          </div>
+          <NoResult
+            title="No users so far"
+            description="It looks like there is no users yet"
+            buttonLink="/sign-in"
+            linkTitle="Join to be first"
+          />
         )}
       </section>
     </>

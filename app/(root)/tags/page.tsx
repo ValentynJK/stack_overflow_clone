@@ -1,9 +1,9 @@
 import TagCard from "@/components/cards/TagCard";
 import Filter from "@/components/shared/Filter";
+import NoResult from "@/components/shared/NoResult";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import { TagFilters } from "@/constants/filters";
 import { getAllTags } from "@/lib/actions/tag.actions";
-import Link from "next/link";
 
 const Tags = async () => {
   const { tags } = await getAllTags({});
@@ -33,12 +33,12 @@ const Tags = async () => {
         {tags.length > 0 ? (
           tags.map((tag) => <TagCard key={tag._id} tag={tag} />)
         ) : (
-          <div className="paragraph-regular text-dark200_light800 mx-auto max-w-xl text-center">
-            <p>No users yet</p>
-            <Link href="/sign-up" className="mt-2 font-bold text-accent-blue">
-              Join to be the first
-            </Link>
-          </div>
+          <NoResult
+            title="No tags found"
+            description="It looks like there is no tags"
+            buttonLink="/ask-question"
+            linkTitle="Ask Question"
+          />
         )}
       </section>
     </>
