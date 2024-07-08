@@ -30,7 +30,7 @@ interface Props {
   mongoUserId: string;
 }
 
-const type = "edit";
+const type: any = "create";
 
 const Question = ({ mongoUserId }: Props) => {
   // establishes Tiny reference
